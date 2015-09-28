@@ -37,6 +37,8 @@ lab.experiment('authService', function () {
 			password : "test"
 		};
 
+		service.addUser(user, userAdded);
+
 		function userAdded (err)
 		{
 	       Code.expect(err).to.equal(null);
@@ -58,7 +60,7 @@ lab.experiment('authService', function () {
 
 		}
 
-		service.addUser(user, userAdded);
+		
 
 	});
 
@@ -88,6 +90,28 @@ lab.experiment('authService', function () {
 		{
 	       Code.expect(err).to.equal(null);
 	       Code.expect(result).to.equal(false);
+
+	    	done();
+
+		}
+
+		service.addUser(user, userAdded);
+
+	});
+
+	lab.test('validate user password length', function (done) {
+
+	 
+		var service = authService({ db : connection});
+
+		var user = {
+			username : "alessage",
+			password : ""
+		};
+
+		function userAdded (err)
+		{
+	       Code.expect(err).to.not.equal(null);
 
 	    	done();
 

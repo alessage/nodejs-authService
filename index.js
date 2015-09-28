@@ -1,9 +1,15 @@
 'use strict';
+var Joi = require('joi');
 
 function authService(opts)
 {
 
 	var db = opts.db;
+	var schema = Joi.object().keys({
+			username: Joi.string(),
+		    password: Joi.string().regex(/.{3,10}/)    
+		});
+
 	var service = {
 
 		addUser : addUser,
@@ -15,6 +21,10 @@ function authService(opts)
 
     function addUser(user , callback)
     {
+    	var check = Joi.validate(user, schema);
+
+		if(check.error != null) return callback(check.error);
+
     	db.query('INSERT INTO users SET ?', user, function(err, result) {
 		  if (err) {
     		return callback(err);

@@ -1,6 +1,6 @@
 {
   "name": "@alessage/authservice",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/alessage/nodejs-authService#readme",
   "dependencies": {
+    "joi": "^6.7.1",
     "mysql": "^2.9.0",
     "winston": "^1.0.2"
   },
